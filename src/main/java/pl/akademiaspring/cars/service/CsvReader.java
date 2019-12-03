@@ -7,6 +7,8 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import pl.akademiaspring.cars.model.Car;
+import pl.akademiaspring.cars.model.CarMongo;
+import pl.akademiaspring.cars.model.CarSql;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,8 +19,8 @@ import java.util.Map;
 @Service
 public class CsvReader {
 
-    @EventListener(ApplicationReadyEvent.class)
-    public List<Car> readCsv() throws FileNotFoundException {
+
+    public List<CarMongo> readCsvforMongo() {
 
         Map<String, String> mapping = new HashMap<>();
         mapping.put("id", "Id");
@@ -27,9 +29,9 @@ public class CsvReader {
         mapping.put("productionYear", "Production_year");
         mapping.put("vin", "Vin");
 
-        HeaderColumnNameTranslateMappingStrategy<Car> strategy =
-                new HeaderColumnNameTranslateMappingStrategy<Car>();
-        strategy.setType(Car.class);
+        HeaderColumnNameTranslateMappingStrategy<CarMongo> strategy =
+                new HeaderColumnNameTranslateMappingStrategy<CarMongo>();
+        strategy.setType(CarMongo.class);
         strategy.setColumnMapping(mapping);
 
         CSVReader csvReader = null;
@@ -42,12 +44,45 @@ public class CsvReader {
         }
         CsvToBean csvToBean = new CsvToBean();
 
-        List<Car> list = csvToBean.parse(strategy, csvReader);
+        List<CarMongo> list = csvToBean.parse(strategy, csvReader);
 
-        for (Car car : list) {
-            System.out.println(car);
-        }
+//        for (Car car : list) {
+//            System.out.println(car);
+//        }
 
         return list;
 }
+
+
+    public List<CarSql> readCsvforSQL() {
+
+        Map<String, String> mapping = new HashMap<>();
+        mapping.put("mark", "Mark");
+        mapping.put("model", "Model");
+        mapping.put("productionYear", "Production_year");
+        mapping.put("vin", "Vin");
+
+        HeaderColumnNameTranslateMappingStrategy<CarSql> strategy =
+                new HeaderColumnNameTranslateMappingStrategy<CarSql>();
+        strategy.setType(CarSql.class);
+        strategy.setColumnMapping(mapping);
+
+        CSVReader csvReader = null;
+        try {
+            csvReader = new CSVReader(new FileReader
+                    ("src/main/resources/templates/cars.csv"));
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        CsvToBean csvToBean = new CsvToBean();
+
+        List<CarSql> list = csvToBean.parse(strategy, csvReader);
+
+//        for (Car car : list) {
+//            System.out.println(car);
+//        }
+
+        return list;
+    }
 }
