@@ -11,19 +11,21 @@ import java.util.List;
 @Service
 public class MySqlService {
 
-//    private CarMySqlRepo carMySqlRepo;
-//    private CsvReader csvReader;
-//
-//    public MySqlService(CarMySqlRepo carMySqlRepo, CsvReader csvReader){
-//        this.carMySqlRepo = carMySqlRepo;
-//        this.csvReader = csvReader;
-//    }
-//
-//    public void saveAllCars(){
-//            csvReader.readCsvforSQL().stream().forEach(car -> carMySqlRepo.save(car));
-//    }
-//
-//    public List<CarSql> findAllCars(){
-//        return carMySqlRepo.findAll();
-//    }
+    private CarMySqlRepo carMySqlRepo;
+    private CsvReader csvReader;
+
+    public MySqlService(CarMySqlRepo carMySqlRepo, CsvReader csvReader){
+        this.carMySqlRepo = carMySqlRepo;
+        this.csvReader = csvReader;
+    }
+
+    @LogExecutionTime
+    public void saveAllCars(){
+            csvReader.readCsvforSQL().stream().forEach(car -> carMySqlRepo.save(car));
+    }
+
+    @LogExecutionTime
+    public List<CarSql> findAllCars(){
+        return carMySqlRepo.findAll();
+    }
 }

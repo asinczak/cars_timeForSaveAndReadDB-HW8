@@ -12,9 +12,6 @@ import pl.akademiaspring.cars.service.MongoDBservice;
 @SpringBootApplication
 public class CarsApplication {
 
-    @Autowired
-    private MongoDBservice mongoDBservice;
-
     public static void main(String[] args) {
         SpringApplication.run(CarsApplication.class, args);
 

@@ -79,9 +79,9 @@ public class CsvReader {
 
         List<CarSql> list = csvToBean.parse(strategy, csvReader);
 
-//        for (Car car : list) {
-//            System.out.println(car);
-//        }
+        for (Car car : list) {
+            System.out.println(car);
+        }
 
         return list;
     }
