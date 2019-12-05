@@ -3,10 +3,7 @@ package pl.akademiaspring.cars.service;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.HeaderColumnNameTranslateMappingStrategy;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
-import pl.akademiaspring.cars.model.Car;
 import pl.akademiaspring.cars.model.CarMongo;
 import pl.akademiaspring.cars.model.CarSql;
 
