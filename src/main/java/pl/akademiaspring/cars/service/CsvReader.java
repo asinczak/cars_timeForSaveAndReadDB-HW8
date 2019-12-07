@@ -16,18 +16,16 @@ import java.util.Map;
 @Service
 public class CsvReader {
 
-
-    public List<CarMongo> readCsvforMongo() {
+    public List<CarMongo> readCsvForMongo() {
 
         Map<String, String> mapping = new HashMap<>();
-        mapping.put("id", "Id");
         mapping.put("mark", "Mark");
         mapping.put("model", "Model");
-        mapping.put("productionYear", "Production_year");
+        mapping.put("production_Year", "Production_year");
         mapping.put("vin", "Vin");
 
         HeaderColumnNameTranslateMappingStrategy<CarMongo> strategy =
-                new HeaderColumnNameTranslateMappingStrategy<CarMongo>();
+                new HeaderColumnNameTranslateMappingStrategy<>();
         strategy.setType(CarMongo.class);
         strategy.setColumnMapping(mapping);
 
@@ -35,32 +33,27 @@ public class CsvReader {
         try {
             csvReader = new CSVReader(new FileReader
                     ("src/main/resources/templates/cars.csv"));
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         CsvToBean csvToBean = new CsvToBean();
 
         List<CarMongo> list = csvToBean.parse(strategy, csvReader);
 
-//        for (Car car : list) {
-//            System.out.println(car);
-//        }
-
         return list;
-}
+    }
 
 
-    public List<CarSql> readCsvforSQL() {
+    public List<CarSql> readCsvForSQL() {
 
         Map<String, String> mapping = new HashMap<>();
         mapping.put("mark", "Mark");
         mapping.put("model", "Model");
-        mapping.put("productionYear", "Production_year");
+        mapping.put("production_Year", "Production_year");
         mapping.put("vin", "Vin");
 
         HeaderColumnNameTranslateMappingStrategy<CarSql> strategy =
-                new HeaderColumnNameTranslateMappingStrategy<CarSql>();
+                new HeaderColumnNameTranslateMappingStrategy<>();
         strategy.setType(CarSql.class);
         strategy.setColumnMapping(mapping);
 
@@ -68,17 +61,12 @@ public class CsvReader {
         try {
             csvReader = new CSVReader(new FileReader
                     ("src/main/resources/templates/cars.csv"));
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         CsvToBean csvToBean = new CsvToBean();
 
         List<CarSql> list = csvToBean.parse(strategy, csvReader);
-
-        for (Car car : list) {
-            System.out.println(car);
-        }
 
         return list;
     }

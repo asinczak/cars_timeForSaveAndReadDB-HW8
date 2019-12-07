@@ -19,7 +19,7 @@ public class MySqlService {
 
     @LogExecutionTime
     public void saveAllCars(){
-            csvReader.readCsvforSQL().stream().forEach(car -> carMySqlRepo.save(car));
+            csvReader.readCsvForSQL().stream().forEach(car -> carMySqlRepo.save(car));
     }
 
     @LogExecutionTime

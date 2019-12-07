@@ -9,10 +9,20 @@ public class CarSql {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    String model;
-    String mark;
-    String productionYear;
-    String vin;
+    private String model;
+    private String mark;
+    private String production_Year;
+    private String vin;
+
+    public CarSql(String model, String mark, String productionYear, String vin) {
+        this.model = model;
+        this.mark = mark;
+        this.production_Year = productionYear;
+        this.vin = vin;
+    }
+
+    public CarSql() {
+    }
 
     public Long getId() {
         return id;
@@ -38,12 +48,12 @@ public class CarSql {
         this.mark = mark;
     }
 
-    public String getProductionYear() {
-        return productionYear;
+    public String getProduction_Year() {
+        return production_Year;
     }
 
-    public void setProductionYear(String productionYear) {
-        this.productionYear = productionYear;
+    public void setProduction_Year(String production_Year) {
+        this.production_Year = production_Year;
     }
 
     public String getVin() {
@@ -61,7 +71,7 @@ public class CarSql {
                 "id=" + id +
                 ", model='" + model + '\'' +
                 ", mark='" + mark + '\'' +
-                ", productionYear='" + productionYear + '\'' +
+                ", productionYear='" + production_Year + '\'' +
                 ", vin='" + vin + '\'' +
                 '}';
     }

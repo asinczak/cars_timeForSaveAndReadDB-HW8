@@ -3,10 +3,20 @@ package pl.akademiaspring.cars.model;
 public class CarMongo {
 
     private String id;
-    String model;
-    String mark;
-    String productionYear;
-    String vin;
+    private String model;
+    private String mark;
+    private String production_Year;
+    private String vin;
+
+    public CarMongo(String model, String mark, String productionYear, String vin) {
+        this.model = model;
+        this.mark = mark;
+        this.production_Year = productionYear;
+        this.vin = vin;
+    }
+
+    public CarMongo() {
+    }
 
     public String getId() {
         return id;
@@ -32,12 +42,12 @@ public class CarMongo {
         this.mark = mark;
     }
 
-    public String getProductionYear() {
-        return productionYear;
+    public String getProduction_Year() {
+        return production_Year;
     }
 
-    public void setProductionYear(String productionYear) {
-        this.productionYear = productionYear;
+    public void setProduction_Year(String production_Year) {
+        this.production_Year = production_Year;
     }
 
     public String getVin() {
@@ -55,7 +65,7 @@ public class CarMongo {
                 "id=" + id +
                 ", model='" + model + '\'' +
                 ", mark='" + mark + '\'' +
-                ", productionYear='" + productionYear + '\'' +
+                ", productionYear='" + production_Year + '\'' +
                 ", vin='" + vin + '\'' +
                 '}';
     }

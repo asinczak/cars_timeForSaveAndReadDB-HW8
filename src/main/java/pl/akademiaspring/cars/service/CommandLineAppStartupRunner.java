@@ -7,17 +7,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommandLineAppStartupRunner implements CommandLineRunner {
 
-    @Autowired
     private MongoDBservice mongoDBservice;
 
-    @Autowired
     private MySqlService mySqlService;
 
+    @Autowired
+    public CommandLineAppStartupRunner(MongoDBservice mongoDBservice, MySqlService mySqlService) {
+        this.mongoDBservice = mongoDBservice;
+        this.mySqlService = mySqlService;
+    }
+
     @Override
-    public void run(String... args) throws Exception {
-//        mongoDBservice.saveAllCars();
-//        mongoDBservice.findAllCars();
-       mySqlService.saveAllCars();
-       mySqlService.findAllCars();
+    public void run(String... args) {
+        mongoDBservice.saveAllCars();
+        mySqlService.saveAllCars();
+        mongoDBservice.findAllCars();
+        mySqlService.findAllCars();
     }
 }
